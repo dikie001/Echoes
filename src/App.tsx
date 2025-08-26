@@ -4,6 +4,7 @@ import SettingsPage from "./pages/Settingsx";
 import StoriesPage from "./pages/Stories";
 import TriviaPage from "./pages/Trivia";
 import AuthPage from "./auth/AuthPage";
+import CreateStoryForm from "./pages/CreateStory";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/quotes" element={<StoriesPage />} />
           <Route path="/trivia" element={<TriviaPage />} />
           <Route path="/auth" element={<AuthPage />} />
+          <Route path="/create-story" element={<CreateStoryForm />} />
         </Routes>
       </Router>
     </>
