@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage"
 import SettingsPage from "./pages/Settingsx";
 import StoriesPage from "./pages/Stories";
 import TriviaPage from "./pages/Trivia";
+import AuthPage from "./auth/AuthPage";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/quotes" element={<StoriesPage />} />
           <Route path="/trivia" element={<TriviaPage />} />
+          <Route path="/auth" element={<AuthPage />} />
         </Routes>
       </Router>
     </>
