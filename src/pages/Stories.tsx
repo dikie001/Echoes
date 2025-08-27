@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { useThemeStore } from "../store/ThemeStore";
 import Navbar from "../components/Navbar";
-import '../global.css'
+import "../global.css";
 
 const StoriesPage: React.FC = () => {
   const {
@@ -152,11 +152,15 @@ const StoriesPage: React.FC = () => {
     <div className={`min-h-screen ${bgThemeColors[theme]}`}>
       <Navbar />
 
-
       {/* Categories (static chips) */}
       <section className={` ${borderColor} px-4 py-4 pt-24 `}>
-        <div className="scrollbar scrollbar-dark max-w-7xl mx-auto flex items-center space-x-3 overflow-x-auto">
-          <Filter className={`${subTextThemeColors[theme]} mr-1`} size={18} />
+        <div
+          className={`scrollbar scrollbar-${theme} max-w-7xl mx-auto flex items-center space-x-3 overflow-x-auto`}
+        >
+          <Filter
+            size={20}
+            className={`${subTextThemeColors[theme]} mr-2 flex-shrink-0`}
+          />{" "}
           {categories.map((c) => (
             <span
               key={c}
@@ -169,8 +173,8 @@ const StoriesPage: React.FC = () => {
       </section>
 
       {/* Stories Grid */}
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <main className="max-w-7xl mx-auto px-4 py-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {stories.map((story) => (
             <article
               key={story.id}

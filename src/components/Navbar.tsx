@@ -6,6 +6,7 @@ import {
   Menu,
   Pen,
   Plus,
+  Search,
   Settings,
   User,
   X,
@@ -17,7 +18,7 @@ import ChoiceModal from "../modals/ChoiceModal";
 
 const Navbar = () => {
   // ZUSTAND STATES
-  const { theme, textThemeColors, navbarText, setNavbarText, bgThemeColors } =
+  const { theme, textThemeColors, navbarText, setNavbarText, bgThemeColors,cardThemeColors,subTextThemeColors } =
     useThemeStore();
   // COMMON STATES
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -50,6 +51,19 @@ const Navbar = () => {
             >
               {navbarText}
             </h1>
+          </div>
+
+          {/* Search Bar */}
+          <div className="max-w-7xl mx-auto relative">
+            <Search
+              size={20}
+              className={`absolute left-3 top-1/2 -translate-y-1/2 ${subTextThemeColors[theme]}`}
+            />
+            <input
+              type="text"
+              placeholder="Search quotes, authors, tags..."
+              className={`${cardThemeColors[theme]} ${textThemeColors[theme]} focus:outline-0 focus:border-blue-400 pl-10 pr-4 py-2 rounded-2xl border  w-full max-w-[80]`}
+            />
           </div>
 
           {/* Desktop Navigation */}

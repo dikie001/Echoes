@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import { useThemeStore } from "../store/ThemeStore";
+import "../global.css"
 
 const QuotesPage: React.FC = () => {
   const {
@@ -77,11 +78,8 @@ const QuotesPage: React.FC = () => {
 
   return (
     <div className={`min-h-screen ${bgThemeColors[theme]}`}>
-      {/* Header */}
       <Navbar />
-      <header
-        className={`${cardThemeColors[theme]} border-b ${borderColor} px-4 py-2`}
-      >
+      <header className={` px-4 py-2 pt-20`}>
         <div className="max-w-7xl mx-auto relative">
           <Search
             size={20}
@@ -96,10 +94,8 @@ const QuotesPage: React.FC = () => {
       </header>
 
       {/* Filters */}
-      <section
-        className={`${cardThemeColors[theme]} border-b ${borderColor} px-4 py-4`}
-      >
-        <div className="flex items-center space-x-2 max-w-7xl mx-auto overflow-x-auto">
+      <section className={` ${borderColor} px-4 py-4`}>
+        <div className={`scrollbar scrollbar-${theme}  flex items-center space-x-2 max-w-7xl mx-auto overflow-x-auto`}>
           <Filter
             size={20}
             className={`${subTextThemeColors[theme]} mr-2 flex-shrink-0`}
