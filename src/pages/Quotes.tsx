@@ -79,22 +79,10 @@ const QuotesPage: React.FC = () => {
   return (
     <div className={`min-h-screen ${bgThemeColors[theme]}`}>
       <Navbar />
-      <header className={` px-4 py-2 pt-20`}>
-        <div className="max-w-7xl mx-auto relative">
-          <Search
-            size={20}
-            className={`absolute left-3 top-1/2 -translate-y-1/2 ${subTextThemeColors[theme]}`}
-          />
-          <input
-            type="text"
-            placeholder="Search quotes, authors, tags..."
-            className={`${cardThemeColors[theme]} ${textThemeColors[theme]} pl-10 pr-4 py-2 rounded-xl border ${borderColor} w-full md:w-80`}
-          />
-        </div>
-      </header>
+   
 
       {/* Filters */}
-      <section className={` ${borderColor} px-4 py-4`}>
+      <section className={` ${borderColor} px-4 py-4 pt-22`}>
         <div className={`scrollbar scrollbar-${theme}  flex items-center space-x-2 max-w-7xl mx-auto overflow-x-auto`}>
           <Filter
             size={20}
@@ -112,7 +100,7 @@ const QuotesPage: React.FC = () => {
       </section>
 
       {/* Quotes */}
-      <main className="max-w-7xl mx-auto px-4 py-8 grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <main className="max-w-7xl mx-auto px-4 py-2 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {quotes.map((quote) => (
           <article
             key={quote.id}

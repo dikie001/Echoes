@@ -4,22 +4,28 @@ import {
   Heart,
   Home,
   Menu,
-  Pen,
   Plus,
   Search,
   Settings,
   User,
-  X,
+  X
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useThemeStore } from "../store/ThemeStore";
 import { useNavigate } from "react-router-dom";
 import ChoiceModal from "../modals/ChoiceModal";
+import { useThemeStore } from "../store/ThemeStore";
 
 const Navbar = () => {
   // ZUSTAND STATES
-  const { theme, textThemeColors, navbarText, setNavbarText, bgThemeColors,cardThemeColors,subTextThemeColors } =
-    useThemeStore();
+  const {
+    theme,
+    textThemeColors,
+    navbarText,
+    setNavbarText,
+    bgThemeColors,
+    cardThemeColors,
+    subTextThemeColors,
+  } = useThemeStore();
   // COMMON STATES
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showChoiceModal, setShowChoiceModal] = useState<boolean>(false);
@@ -54,17 +60,19 @@ const Navbar = () => {
           </div>
 
           {/* Search Bar */}
-          <div className="max-w-7xl mx-auto relative">
-            <Search
-              size={20}
-              className={`absolute left-3 top-1/2 -translate-y-1/2 ${subTextThemeColors[theme]}`}
-            />
-            <input
-              type="text"
-              placeholder="Search quotes, authors, tags..."
-              className={`${cardThemeColors[theme]} ${textThemeColors[theme]} focus:outline-0 focus:border-blue-400 pl-10 pr-4 py-2 rounded-2xl border  w-full max-w-[80]`}
-            />
-          </div>
+          {(navbarText === "Quotes" || navbarText === "Novels") && (
+            <div className="max-w-7xl mx-auto relative">
+              <Search
+                size={20}
+                className={`absolute left-3 top-1/2 -translate-y-1/2 ${subTextThemeColors[theme]}`}
+              />
+              <input
+                type="text"
+                placeholder="Search quotes, authors, tags..."
+                className={`${cardThemeColors[theme]} ${textThemeColors[theme]} shadow-lg focus:outline-0 focus:border-blue-400 pl-10 pr-4 py-2 rounded-2xl border border-transparent  w-full max-w-[80]`}
+              />
+            </div>
+          )}
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex ">
@@ -73,7 +81,7 @@ const Navbar = () => {
 
               return (
                 <div
-                  className={`px-3 py-2 rounded  transition-colors duration-200 ${textThemeColors[theme]} `}
+                  className={`px-1 py-2 rounded   transition-colors duration-200 ${textThemeColors[theme]} `}
                 >
                   <button
                     key={link.to}
