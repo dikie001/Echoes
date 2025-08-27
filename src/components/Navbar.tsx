@@ -14,7 +14,8 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   // ZUSTAND STATES
-  const { theme, themeTextColors, navbarText, setNavbarText,bgThemeColors } = useThemeStore();
+  const { theme, textThemeColors, navbarText, setNavbarText, bgThemeColors } =
+    useThemeStore();
   // COMMON STATES
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -32,26 +33,39 @@ const Navbar = () => {
     { to: "/login", icon: User, text: "Login" },
   ];
   return (
-    <div className={`${bgThemeColors[theme]}  border-b border-gray-700 fixed w-full z-60`}>
+    <div
+      className={`${bgThemeColors[theme]}  border-b border-white/10 shadow fixed w-full z-60`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-blue-400">{navbarText}</h1>
+            <h1
+              onClick={() => navigate("/")}
+              className={` text-2xl cursor-pointer font-bold ${textThemeColors}`}
+            >
+              {navbarText}
+            </h1>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex ">
             {links.map((link) => {
+              const navbarText = link.text === "Home" ? "Echoes" : link.text;
+
               return (
-                <div className={`px-3 py-2 rounded hover:bg-gray-700 transition-colors duration-200`}>
-                  <a
+                <div
+                  className={`px-3 py-2 rounded  transition-colors duration-200 ${textThemeColors[theme]} `}
+                >
+                  <button
                     key={link.to}
-                    onClick={() => setNavbarText(link.text)}
-                    href={link.to}
-                    className={`flex items-center gap-2 text-sm font-medium ${themeTextColors[theme]}`}
+                    onClick={() => {
+                      setNavbarText(navbarText);
+                      navigate(link.to);
+                    }}
+                    className={`flex items-center cursor-pointer text-sm font-medium hover:ring-2 p-2 px-3 rounded-xl }`}
                   >
                     <span>{link.text}</span>
-                  </a>
+                  </button>
                 </div>
               );
             })}
@@ -61,7 +75,7 @@ const Navbar = () => {
           <div className="md:hidden ">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-300 hover:text-blue-300 p-2"
+              className="text-gray-300 hover:text-blue-300 p-2 cursor-pointer"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -69,28 +83,47 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Navigation Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden ">
-            {links.map((link) => {
-              const Icon = link.icon;
-              return (
-                <button
-                  key={link.to}
-                  onClick={() => {
-                    link.text === "Home"
-                      ? setNavbarText("Echoes")
-                      : setNavbarText(link.text);
-                    navigate(link.to);
-                  }}
-                  className={`flex w-full items-center gap-2 px-3 py-2 rounded text-sm font-medium transition-colors duration-200 hover:bg-gray-700 ${themeTextColors[theme]}`}
-                >
-                  <Icon size={18} />
-                  <span>{link.text}</span>
-                </button>
-              );
-            })}
-          </div>
-        )}
+        {/* Overlay */}
+        <div
+          className={`fixed inset-0 bg-black/50 transition-opacity duration-300 ease-in-out md:hidden z-40
+    ${isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+          onClick={() => setIsMenuOpen(false)}
+        ></div>
+        {/* Sidebar */}
+        <div
+          className={`fixed inset-y-0 ${
+            bgThemeColors[theme]
+          } left-0 z-50 w-80 transform  shadow-xl transition-transform duration-300 ease-out md:hidden ${
+            isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          <nav
+            className="flex h-full flex-col p-4"
+            aria-label="Mobile navigation"
+          >
+            <div className="space-y-1">
+              {links.map((link) => {
+                const Icon = link.icon;
+                const navbarText = link.text === "Home" ? "Echoes" : link.text;
+
+                return (
+                  <button
+                    key={link.to}
+                    onClick={() => {
+                      setNavbarText(navbarText);
+                      navigate(link.to);
+                      setIsMenuOpen(false);
+                    }}
+                    className={`group flex w-full items-center cursor-pointer gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 focus:ring-2  focus:ring-offse-2 ${textThemeColors[theme]} hover:ring`}
+                  >
+                    <Icon size={18} className="flex-shrink-0" />
+                    <span className="truncate">{link.text}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </nav>
+        </div>
       </div>
     </div>
   );
