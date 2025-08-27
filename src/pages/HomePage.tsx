@@ -4,11 +4,9 @@ import Navbar from "../components/Navbar";
 import { useThemeStore } from "../store/ThemeStore";
 
 const HomePage: React.FC = () => {
-  const { theme, setTheme ,bgThemes} = useThemeStore();
+  const { theme, setTheme ,bgThemeColors} = useThemeStore();
 
-  useEffect(()=>{
-    console.log(bgThemes[theme])
-  })
+
 
 
   const featuredQuotes = [
@@ -52,10 +50,10 @@ const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className={`min-h-screen ${bgThemes[theme]}  `}>
+    <div className={`min-h-screen ${bgThemeColors[theme]}  `}>
       <Navbar />
       {/* Hero Section */}
-      <section className={`${bgThemes[theme]} px-4`}>
+      <section className={`${bgThemeColors[theme]} px-4`}>
         <div className="max-w-4xl mx-auto text-center pt-10">
           <p className="text-xl md:text-2xl text-gray-300 mb-6 max-w-2xl mx-auto">
             Discover, collect, and share the quotes and stories that resonate

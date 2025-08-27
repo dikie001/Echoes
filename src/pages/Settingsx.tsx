@@ -1,33 +1,49 @@
 import {
-    ArrowLeft,
-    Bell,
-    Download,
-    LogOut,
-    Moon,
-    Trash2,
-    User
+  ArrowLeft,
+  Bell,
+  Download,
+  LogOut,
+  Moon,
+  Trash2,
+  User,
 } from "lucide-react";
 import React, { useState } from "react";
+import Navbar from "../components/Navbar";
+import { useThemeStore } from "../store/ThemeStore";
+
+type Theme =
+  | "light"
+  | "dark"
+  | "fancy"
+  | "solarized"
+  | "cyberpunk"
+  | "forest"
+  | "ocean"
+  | "dracula";
 
 const SettingsPage: React.FC = () => {
+  const { theme, bgThemeColors, setTheme } = useThemeStore();
   const [darkMode, setDarkMode] = useState(true);
   const [notifications, setNotifications] = useState(true);
   const [fontSize, setFontSize] = useState("medium");
 
+  const SettingsThemes: Theme[] = [
+    "light",
+    "dark",
+    "fancy",
+    "solarized",
+    "cyberpunk",
+    "forest",
+    "ocean",
+    "dracula",
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100">
-      {/* Header */}
-      <header className="bg-gray-800 border-b border-gray-700 px-4 py-4">
-        <div className="max-w-4xl mx-auto flex items-center">
-          <button className="text-gray-300 hover:text-blue-300 mr-4">
-            <ArrowLeft size={24} />
-          </button>
-          <h1 className="text-2xl font-bold text-gray-100">Settings</h1>
-        </div>
-      </header>
+    <div className={`${bgThemeColors[theme]} min-h-screen`}>
+      <Navbar />
 
       {/* Settings Content */}
-      <main className="max-w-4xl mx-auto px-4 py-8">
+      <main className="max-w-4xl mx-auto px-4 py-8 pt-24">
         <div className="space-y-8">
           {/* Account Section */}
           <section className="bg-gray-800 rounded-2xl p-6 shadow-lg">
@@ -68,26 +84,27 @@ const SettingsPage: React.FC = () => {
               </h2>
             </div>
             <div className="space-y-4">
-              <div className="flex items-center justify-between py-3">
+              <div className="flex items-center justify-between py-3 border-t border-gray-700">
                 <div>
-                  <p className="text-gray-100 font-medium">Dark Mode</p>
+                  <p className="text-gray-100 font-medium">Theme</p>
                   <p className="text-gray-400 text-sm">
-                    Choose your display theme
+                    Choose a theme that suits you
                   </p>
                 </div>
-                <button
-                  onClick={() => setDarkMode(!darkMode)}
-                  className={`w-12 h-6 rounded-full transition-colors ${
-                    darkMode ? "bg-blue-600" : "bg-gray-600"
-                  }`}
+                <select
+                  value={theme}
+                  onChange={(e) => {
+                    setTheme(e.target.value as Theme);
+                    localStorage.setItem("echoes-theme", e.target.value)
+                  }}
+                  className="bg-gray-700 outline-0 text-gray-100 px-3 py-2 rounded-lg border border-gray-600 focus:border-blue-400"
                 >
-                  <div
-                    className={`w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${
-                      darkMode ? "translate-x-6" : "translate-x-1"
-                    }`}
-                  />
-                </button>
+                  {SettingsThemes.map((item) => (
+                    <option>{item}</option>
+                  ))}
+                </select>
               </div>
+              {/* FONT SIZE */}
               <div className="flex items-center justify-between py-3 border-t border-gray-700">
                 <div>
                   <p className="text-gray-100 font-medium">Font Size</p>
@@ -98,7 +115,7 @@ const SettingsPage: React.FC = () => {
                 <select
                   value={fontSize}
                   onChange={(e) => setFontSize(e.target.value)}
-                  className="bg-gray-700 text-gray-100 px-3 py-2 rounded-lg border border-gray-600 focus:border-blue-400"
+                  className="bg-gray-700 outline-0 text-gray-100 px-3 py-2 rounded-lg border border-gray-600 focus:border-blue-400"
                 >
                   <option value="small">Small</option>
                   <option value="medium">Medium</option>
