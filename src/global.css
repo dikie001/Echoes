@@ -1,6 +1,8 @@
 /* Base */
 .scrollbar {
-    padding-bottom: 14px;
+  padding-bottom: 14px;
+    padding-top: 4px;
+
   overflow-y: auto;
 }
 .scrollbar::-webkit-scrollbar {
@@ -36,7 +38,11 @@
 }
 
 .scrollbar-fancy::-webkit-scrollbar-track {
-  background: linear-gradient(to bottom, #0e7490, #581c87); /* cyan-700 → purple-900 */
+  background: linear-gradient(
+    to bottom,
+    #0e7490,
+    #581c87
+  ); /* cyan-700 → purple-900 */
 }
 .scrollbar-fancy::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.4);

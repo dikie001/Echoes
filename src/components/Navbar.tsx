@@ -8,7 +8,7 @@ import {
   Search,
   Settings,
   User,
-  X
+  X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -68,7 +68,9 @@ const Navbar = () => {
               />
               <input
                 type="text"
-                placeholder="Search quotes, authors, tags..."
+                placeholder={`Search ${
+                  navbarText === "Novels" ? "novels" : "quotes"
+                }, authors, tags...`}
                 className={`${cardThemeColors[theme]} ${textThemeColors[theme]} shadow-lg focus:outline-0 focus:border-blue-400 pl-10 pr-4 py-2 rounded-2xl border border-transparent  w-full max-w-[80]`}
               />
             </div>

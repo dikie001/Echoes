@@ -1,12 +1,5 @@
-import {
-  Bookmark,
-  Copy,
-  Filter,
-  Heart,
-  Quote,
-  Share
-} from "lucide-react";
-import React from "react";
+import { Bookmark, Copy, Filter, Heart, Quote, Share } from "lucide-react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import "../global.css";
 import { useThemeStore } from "../store/ThemeStore";
@@ -16,10 +9,12 @@ const QuotesPage: React.FC = () => {
     theme,
     bgThemeColors,
     cardThemeColors,
+    navbarText,
     textThemeColors,
     subTextThemeColors,
     buttonThemeColors,
   } = useThemeStore();
+  const [activeCategory, setActiveCategory] = useState("");
 
   const categories = [
     "all",
@@ -74,26 +69,39 @@ const QuotesPage: React.FC = () => {
       ? "bg-gray-100 text-gray-800"
       : "bg-white/5 text-gray-300";
 
+  // Handle category selection
+  const handleCategory = (params: string) => {
+    setActiveCategory(params);
+    console.log(params);
+  };
+
   return (
     <div className={`min-h-screen ${bgThemeColors[theme]}`}>
       <Navbar />
-   
 
       {/* Filters */}
       <section className={` ${borderColor} px-4 py-4 pt-22`}>
-        <div className={`scrollbar scrollbar-${theme}  flex items-center space-x-2 max-w-7xl mx-auto overflow-x-auto`}>
+        <div
+          className={`scrollbar scrollbar-${theme}  flex items-center space-x-2 max-w-7xl mx-auto overflow-x-auto`}
+        >
           <Filter
             size={20}
             className={`${subTextThemeColors[theme]} mr-2 flex-shrink-0`}
           />
-          {categories.map((category) => (
-            <span
-              key={category}
-              className={`px-4 py-2 rounded-xl text-sm font-medium ${chipBase}`}
-            >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </span>
-          ))}
+          {categories.map((category) => {
+            const isActive = category === activeCategory;
+            return (
+              <span
+                key={category}
+                onClick={() => handleCategory(category)}
+                className={`${
+                  isActive && "ring-2 "
+                } px-4 py-2 cursor-pointer shadow-lg rounded-xl text-sm font-medium whitespace-nowrap ${chipBase}`}
+              >
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </span>
+            );
+          })}
         </div>
       </section>
 

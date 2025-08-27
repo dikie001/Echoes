@@ -1,7 +1,7 @@
+import { Plus, Quote, Save, Sparkles, Tag, User } from "lucide-react";
 import React, { useState } from "react";
-import { Quote, User, Tag, Save, ArrowLeft, Sparkles, Plus } from "lucide-react";
-import { useThemeStore } from "../store/ThemeStore";
 import Navbar from "../components/Navbar";
+import { useThemeStore } from "../store/ThemeStore";
 
 interface QuoteFormData {
   quote: string;
@@ -9,7 +9,6 @@ interface QuoteFormData {
   category: string;
   tags: string[];
 }
-
 
 const AddQuotePage: React.FC = () => {
     const {
