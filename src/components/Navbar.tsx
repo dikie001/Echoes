@@ -4,6 +4,8 @@ import {
   Heart,
   Home,
   Menu,
+  Pen,
+  Plus,
   Settings,
   User,
   X,
@@ -11,6 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import { useThemeStore } from "../store/ThemeStore";
 import { useNavigate } from "react-router-dom";
+import ChoiceModal from "../modals/ChoiceModal";
 
 const Navbar = () => {
   // ZUSTAND STATES
@@ -18,6 +21,7 @@ const Navbar = () => {
     useThemeStore();
   // COMMON STATES
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showChoiceModal, setShowChoiceModal] = useState<boolean>(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,8 +30,9 @@ const Navbar = () => {
 
   const links = [
     { to: "/", icon: Home, text: "Home" },
+    { to: "/stories", icon: FileText, text: "Novels" },
+    { to: "/addNew", icon: Plus, text: "Add New" },
     { to: "/quotes", icon: Book, text: "Quotes" },
-    { to: "/stories", icon: FileText, text: "Stories" },
     { to: "/favourites", icon: Heart, text: "Favourites" },
     { to: "/settings", icon: Settings, text: "Setings" },
     { to: "/login", icon: User, text: "Login" },
@@ -59,8 +64,12 @@ const Navbar = () => {
                   <button
                     key={link.to}
                     onClick={() => {
+                      if (link.to === "/addNew") {
+                        setShowChoiceModal(true);
+                      } else {
+                        navigate(link.to);
+                      }
                       setNavbarText(navbarText);
-                      navigate(link.to);
                     }}
                     className={`flex items-center cursor-pointer text-sm font-medium hover:ring-2 p-2 px-3 rounded-xl }`}
                   >
@@ -110,8 +119,12 @@ const Navbar = () => {
                   <button
                     key={link.to}
                     onClick={() => {
+                      if (link.to === "/addNew") {
+                        setShowChoiceModal(true);
+                      } else {
+                        navigate(link.to);
+                      }
                       setNavbarText(navbarText);
-                      navigate(link.to);
                       setIsMenuOpen(false);
                     }}
                     className={`group flex w-full items-center cursor-pointer gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 focus:ring-2  focus:ring-offse-2 ${textThemeColors[theme]} hover:ring`}
@@ -125,6 +138,13 @@ const Navbar = () => {
           </nav>
         </div>
       </div>
+      {/* MODALS */}
+      {showChoiceModal && (
+        <ChoiceModal
+          setShowChoiceModal={setShowChoiceModal}
+          showChoiceModal={showChoiceModal}
+        />
+      )}
     </div>
   );
 };

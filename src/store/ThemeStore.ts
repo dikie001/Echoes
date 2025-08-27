@@ -11,6 +11,7 @@ type Theme =
   | "dracula";
 
 interface ThemeState {
+  // THEME
   theme: Theme;
   setTheme: (theme: Theme) => void;
   bgThemeColors: Record<Theme, string>; // mapping of theme
@@ -20,6 +21,10 @@ interface ThemeState {
   cardThemeColors: Record<Theme, string>;
   buttonThemeColors: Record<Theme, string>;
   subTextThemeColors: Record<Theme, string>;
+
+  // STATE
+  choice: string;
+  setChoice: (choice: string) => void;
 }
 
 export const useThemeStore = create<ThemeState>((set) => ({
@@ -31,7 +36,9 @@ export const useThemeStore = create<ThemeState>((set) => ({
   navbarText: "Echoes",
   setNavbarText: (navbarText) => set({ navbarText }),
 
-  // CARDS
+  // STATE 
+  choice: "",
+  setChoice: (choice) => set({ choice }),
 
   //BG THEME COLORS
   bgThemeColors: {
@@ -78,8 +85,8 @@ export const useThemeStore = create<ThemeState>((set) => ({
     solarized: "bg-teal-900 text-slate-200 shadow-md",
     cyberpunk:
       "bg-black text-fuchsia-400 border border-fuchsia-600 shadow-fuchsia-800/40 shadow-lg",
-    forest: "bg-green-900 text-lime-300 shadow-md",
-    ocean: "bg-blue-900 text-cyan-200 shadow-md",
+    forest: "bg-[#043d1d] text-lime-300 shadow-lg",
+    ocean: "bg-blue-900 text-cyan-200 shadow-lg",
     dracula: "bg-zinc-800 text-purple-200 shadow-lg",
   },
 

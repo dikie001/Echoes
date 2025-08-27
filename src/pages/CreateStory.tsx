@@ -1,20 +1,17 @@
+import { BookOpen, Image, Link, Plus, Type, X } from "lucide-react";
 import React, { useState } from "react";
-import {
-  ArrowLeft,
-  Save,
-  Eye,
-  Type,
-  Hash,
-  Clock,
-  User,
-  BookOpen,
-  Plus,
-  X,
-  Image,
-  Link,
-} from "lucide-react";
+import Navbar from "../components/Navbar";
+import { useThemeStore } from "../store/ThemeStore";
 
 const CreateStoryForm: React.FC = () => {
+  const {
+    theme,
+    bgThemeColors,
+    cardThemeColors,
+    buttonThemeColors,
+    textThemeColors,
+    subTextThemeColors,
+  } = useThemeStore();
   const [formData, setFormData] = useState({
     title: "",
     content: "",
@@ -29,7 +26,6 @@ const CreateStoryForm: React.FC = () => {
 
   const [currentTag, setCurrentTag] = useState("");
   const [wordCount, setWordCount] = useState(0);
-  const [previewMode, setPreviewMode] = useState(false);
 
   const categories = [
     "fantasy",
@@ -46,6 +42,7 @@ const CreateStoryForm: React.FC = () => {
     "poetry",
   ];
 
+  // Handle input change and update
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData((prev) => ({
       ...prev,
@@ -61,6 +58,7 @@ const CreateStoryForm: React.FC = () => {
     }
   };
 
+  // Handle Tag Creation
   const addTag = () => {
     if (
       currentTag.trim() &&
@@ -74,6 +72,7 @@ const CreateStoryForm: React.FC = () => {
     }
   };
 
+  // HAndle Tag Removal
   const removeTag = (tagToRemove: string) => {
     setFormData((prev) => ({
       ...prev,
@@ -88,120 +87,60 @@ const CreateStoryForm: React.FC = () => {
     }
   };
 
-  const estimateReadTime = (content: string) => {
-    const words = content
-      .trim()
-      .split(/\s+/)
-      .filter((word) => word.length > 0).length;
-    const readTimeMinutes = Math.max(1, Math.ceil(words / 200)); // 200 words per minute
-    return `${readTimeMinutes} min read`;
-  };
-
-  const saveDraft = () => {
-    console.log("Saving draft:", formData);
-  };
-
-  const publishStory = () => {
-    console.log("Publishing story:", formData);
-  };
-
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100">
-      {/* Header */}
-      <header className="bg-gray-800 border-b border-gray-700 px-4 py-4 sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center">
-            <button className="text-gray-300 hover:text-blue-300 mr-4">
-              <ArrowLeft size={24} />
-            </button>
-            <h1 className="text-2xl font-bold text-gray-100">
-              Create New Story
-            </h1>
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="text-sm text-gray-400">
-              {wordCount} words • {estimateReadTime(formData.content)}
-            </div>
-            <button
-              onClick={() => setPreviewMode(!previewMode)}
-              className="bg-gray-700 hover:bg-gray-600 text-gray-100 px-4 py-2 rounded-xl font-medium transition-all flex items-center"
-            >
-              <Eye className="mr-2" size={18} />
-              Preview
-            </button>
-            <button
-              onClick={saveDraft}
-              className="bg-gray-700 hover:bg-gray-600 text-gray-100 px-4 py-2 rounded-xl font-medium transition-all flex items-center"
-            >
-              <Save className="mr-2" size={18} />
-              Save Draft
-            </button>
-            <button
-              onClick={publishStory}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl font-semibold transition-all"
-            >
-              Publish
-            </button>
-          </div>
-        </div>
-      </header>
-
-      <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className={`min-h-screen ${bgThemeColors[theme]} `}>
+      <Navbar />
+      <div className="max-w-6xl mx-auto px-4 py-8 pt-24">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content Area */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Title Input */}
-            <div className="bg-gray-800 rounded-2xl p-6 shadow-lg">
-              <label className="block text-gray-300 text-sm font-medium mb-3">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-6 ">
+            <div className={`${cardThemeColors[theme]}   rounded-2xl p-6`}>
+              <div
+                className={`flex items-center space-x-4 text-sm ${subTextThemeColors[theme]} justify-end`}
+              >
+                <span className="flex items-center">
+                  <Type className="mr-1" size={16} />
+                  {wordCount} words
+                </span>
+              </div>
+              <label
+                className={`block ${subTextThemeColors[theme]} text-sm font-medium mb-3`}
+              >
                 Story Title
               </label>
               <input
                 type="text"
                 value={formData.title}
                 onChange={(e) => handleInputChange("title", e.target.value)}
-                className="w-full bg-gray-700 text-gray-100 px-4 py-3 rounded-xl border border-gray-600 focus:border-blue-400 focus:outline-none text-xl font-semibold transition-colors"
+                className={`w-full px-4 py-3 rounded-2xl focus:border-blue-400  focus:outline-none transition-all border border-gray-700 ${bgThemeColors[theme]} ${textThemeColors[theme]}`}
                 placeholder="Enter your story title..."
               />
-            </div>
-
-            {/* Story Content */}
-            <div className="bg-gray-800 rounded-2xl p-6 shadow-lg">
-              <div className="flex items-center justify-between mb-3">
-                <label className="text-gray-300 text-sm font-medium">
+              <div className="flex items-center justify-between mb-3 ">
+                <label
+                  className={`${subTextThemeColors[theme]} text-sm font-medium mt-4`}
+                >
                   Story Content
                 </label>
-                <div className="flex items-center space-x-4 text-sm text-gray-400">
-                  <span className="flex items-center">
-                    <Type className="mr-1" size={16} />
-                    {wordCount} words
-                  </span>
-                  <span className="flex items-center">
-                    <Clock className="mr-1" size={16} />
-                    {estimateReadTime(formData.content)}
-                  </span>
-                </div>
               </div>
               <textarea
                 value={formData.content}
                 onChange={(e) => handleInputChange("content", e.target.value)}
-                className="w-full bg-gray-700 text-gray-100 px-4 py-4 rounded-xl border border-gray-600 focus:border-blue-400 focus:outline-none resize-none transition-colors leading-relaxed"
+                className={`w-full border-gray-700  px-4 py-4 rounded-2xl border focus:border-blue-400  focus:outline-none resize-none transition-colors leading-relaxed ${bgThemeColors[theme]} ${textThemeColors[theme]}`}
                 rows={20}
                 placeholder="Once upon a time..."
               />
-
-              {/* Formatting Toolbar */}
               <div className="flex items-center space-x-2 mt-4 pt-4 border-t border-gray-700">
-                <button className="p-2 text-gray-400 hover:text-gray-200 hover:bg-gray-700 rounded-lg transition-all">
+                <button className="p-2 hover:bg-opacity-20 rounded-lg transition-all">
                   <Type size={18} />
                 </button>
-                <button className="p-2 text-gray-400 hover:text-gray-200 hover:bg-gray-700 rounded-lg transition-all">
+                <button className="p-2 hover:bg-opacity-20 rounded-lg transition-all">
                   <Image size={18} />
                 </button>
-                <button className="p-2 text-gray-400 hover:text-gray-200 hover:bg-gray-700 rounded-lg transition-all">
+                <button className="p-2 hover:bg-opacity-20 rounded-lg transition-all">
                   <Link size={18} />
                 </button>
                 <div className="flex-1" />
-                <span className="text-xs text-gray-500">
+                <span className={`text-xs ${subTextThemeColors[theme]}`}>
                   Tip: Use markdown for formatting
                 </span>
               </div>
@@ -210,8 +149,7 @@ const CreateStoryForm: React.FC = () => {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* Story Details */}
-            <div className="bg-gray-800 rounded-2xl p-6 shadow-lg">
+            <div className={`${cardThemeColors[theme]} p-6 rounded-2xl`}>
               <h3 className="text-lg font-semibold mb-4 flex items-center">
                 <BookOpen className="mr-2 text-blue-400" size={20} />
                 Story Details
@@ -219,7 +157,9 @@ const CreateStoryForm: React.FC = () => {
 
               {/* Category */}
               <div className="mb-4">
-                <label className="block text-gray-300 text-sm font-medium mb-2">
+                <label
+                  className={`block ${subTextThemeColors[theme]} text-sm font-medium mb-2`}
+                >
                   Category
                 </label>
                 <select
@@ -227,7 +167,7 @@ const CreateStoryForm: React.FC = () => {
                   onChange={(e) =>
                     handleInputChange("category", e.target.value)
                   }
-                  className="w-full bg-gray-700 text-gray-100 px-3 py-2 rounded-xl border border-gray-600 focus:border-blue-400 focus:outline-none"
+                  className={`w-full px-4 py-3 rounded-2xl focus:border-blue-400  focus:outline-none transition-all border border-gray-700 ${bgThemeColors[theme]} ${textThemeColors[theme]}`}
                 >
                   {categories.map((category) => (
                     <option key={category} value={category}>
@@ -239,14 +179,16 @@ const CreateStoryForm: React.FC = () => {
 
               {/* Tags */}
               <div className="mb-4">
-                <label className="block text-gray-300 text-sm font-medium mb-2">
+                <label
+                  className={`block ${subTextThemeColors[theme]} text-sm font-medium mb-2`}
+                >
                   Tags
                 </label>
                 <div className="flex flex-wrap gap-2 mb-3">
                   {formData.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="bg-blue-900/30 text-blue-300 px-3 py-1 rounded-lg text-sm flex items-center"
+                      className="bg-blue-900/30 text-blue-300 px-3 py-1 rounded-xl text-sm flex items-center"
                     >
                       #{tag}
                       <button
@@ -264,27 +206,30 @@ const CreateStoryForm: React.FC = () => {
                     value={currentTag}
                     onChange={(e) => setCurrentTag(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    className="flex-1 bg-gray-700 text-gray-100 px-3 py-2 rounded-l-xl border border-gray-600 focus:border-blue-400 focus:outline-none text-sm"
+                    className={`w-full px-4 py-3 rounded-l-2xl focus:border-blue-400  focus:outline-none transition-all border border-gray-700 ${bgThemeColors[theme]} ${textThemeColors[theme]}`}
                     placeholder="Add a tag..."
                   />
                   <button
                     onClick={addTag}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-r-xl transition-all"
+                    className={`${buttonThemeColors[theme]} px-3 flex justify-center items-center gap-2 rounded-r-2xl`}
                   >
-                    <Plus size={16} />
+                    <Plus size={18} className={`${textThemeColors[theme]}`} />{" "}
+                    Add
                   </button>
                 </div>
               </div>
 
               {/* Excerpt */}
               <div className="mb-4">
-                <label className="block text-gray-300 text-sm font-medium mb-2">
+                <label
+                  className={`block ${subTextThemeColors[theme]} text-sm font-medium mb-2`}
+                >
                   Excerpt (Optional)
                 </label>
                 <textarea
                   value={formData.excerpt}
                   onChange={(e) => handleInputChange("excerpt", e.target.value)}
-                  className="w-full bg-gray-700 text-gray-100 px-3 py-2 rounded-xl border border-gray-600 focus:border-blue-400 focus:outline-none text-sm resize-none"
+                  className={`w-full px-4 py-3 rounded-2xl focus:border-blue-400  focus:outline-none transition-all border border-gray-700 resize-none ${bgThemeColors[theme]} ${textThemeColors[theme]}`}
                   rows={3}
                   placeholder="Brief description of your story..."
                 />
@@ -292,7 +237,9 @@ const CreateStoryForm: React.FC = () => {
 
               {/* Cover Image */}
               <div className="mb-6">
-                <label className="block text-gray-300 text-sm font-medium mb-2">
+                <label
+                  className={`block ${subTextThemeColors[theme]} text-sm font-medium mb-2`}
+                >
                   Cover Image URL (Optional)
                 </label>
                 <input
@@ -301,94 +248,42 @@ const CreateStoryForm: React.FC = () => {
                   onChange={(e) =>
                     handleInputChange("coverImage", e.target.value)
                   }
-                  className="w-full bg-gray-700 text-gray-100 px-3 py-2 rounded-xl border border-gray-600 focus:border-blue-400 focus:outline-none text-sm"
+                  className={`w-full px-4 py-3 rounded-2xl focus:border-blue-400  focus:outline-none transition-all border border-gray-700 ${bgThemeColors[theme]} ${textThemeColors[theme]}`}
                   placeholder="https://example.com/image.jpg"
                 />
               </div>
             </div>
 
-            {/* Publishing Options */}
-            <div className="bg-gray-800 rounded-2xl p-6 shadow-lg">
-              <h3 className="text-lg font-semibold mb-4 flex items-center">
-                <User className="mr-2 text-blue-400" size={20} />
-                Publishing Options
-              </h3>
-
-              {/* Publish Status */}
-              <div className="mb-4">
-                <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    checked={formData.isPublished}
-                    onChange={(e) =>
-                      handleInputChange("isPublished", e.target.checked)
-                    }
-                    className="w-4 h-4 bg-gray-700 border border-gray-600 rounded focus:ring-blue-400 focus:ring-2"
-                  />
-                  <span className="ml-2 text-gray-300 text-sm">
-                    Publish immediately
-                  </span>
-                </label>
-                <p className="text-gray-500 text-xs mt-1">
-                  Story will be visible to all users
-                </p>
-              </div>
-
-              {/* Comments */}
-              <div className="mb-4">
-                <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    checked={formData.allowComments}
-                    onChange={(e) =>
-                      handleInputChange("allowComments", e.target.checked)
-                    }
-                    className="w-4 h-4 bg-gray-700 border border-gray-600 rounded focus:ring-blue-400 focus:ring-2"
-                  />
-                  <span className="ml-2 text-gray-300 text-sm">
-                    Allow comments
-                  </span>
-                </label>
-                <p className="text-gray-500 text-xs mt-1">
-                  Readers can leave feedback
-                </p>
-              </div>
-            </div>
-
-            {/* Story Stats Preview */}
-            <div className="bg-gray-800 rounded-2xl p-6 shadow-lg">
+            {/* Preview */}
+            <div className={`${cardThemeColors[theme]} p-6 rounded-2xl`}>
               <h3 className="text-lg font-semibold mb-4 text-blue-400">
                 Story Preview
               </h3>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Word Count:</span>
-                  <span className="text-gray-200">{wordCount}</span>
+                  <span className={subTextThemeColors[theme]}>Word Count:</span>
+                  <span className={textThemeColors[theme]}>{wordCount}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Read Time:</span>
-                  <span className="text-gray-200">
-                    {estimateReadTime(formData.content)}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-400">Category:</span>
-                  <span className="text-gray-200 capitalize">
+                  <span className={subTextThemeColors[theme]}>Category:</span>
+                  <span className={`${textThemeColors[theme]} capitalize`}>
                     {formData.category}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Tags:</span>
-                  <span className="text-gray-200">{formData.tags.length}</span>
+                  <span className={subTextThemeColors[theme]}>Tags:</span>
+                  <span className={textThemeColors[theme]}>
+                    {formData.tags.length}
+                  </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Status:</span>
+                  <span className={subTextThemeColors[theme]}>Status:</span>
                   <span
-                    className={`${
+                    className={
                       formData.isPublished
                         ? "text-green-400"
                         : "text-yellow-400"
-                    }`}
+                    }
                   >
                     {formData.isPublished ? "Published" : "Draft"}
                   </span>

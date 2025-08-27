@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useThemeStore } from "../store/ThemeStore";
 import Navbar from "../components/Navbar";
+import '../global.css'
 
 const StoriesPage: React.FC = () => {
   const {
@@ -151,25 +152,10 @@ const StoriesPage: React.FC = () => {
     <div className={`min-h-screen ${bgThemeColors[theme]}`}>
       <Navbar />
 
-      {/* Header */}
-      <header
-        className={`${cardThemeColors[theme]} ${borderColor} px-4 py-4 sticky top-0 z-10`}
-      >
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center">
-            <div className={`${subTextThemeColors[theme]} mr-4 md:hidden`}>
-              <ArrowLeft size={24} />
-            </div>
-            <h1 className={`${textThemeColors[theme]} text-2xl font-bold`}>
-              Stories
-            </h1>
-          </div>
-        </div>
-      </header>
 
       {/* Categories (static chips) */}
-      <section className={`${cardThemeColors[theme]} ${borderColor} px-4 py-4`}>
-        <div className="max-w-7xl mx-auto flex items-center space-x-3 overflow-x-auto">
+      <section className={` ${borderColor} px-4 py-4 pt-24 `}>
+        <div className="scrollbar scrollbar-dark max-w-7xl mx-auto flex items-center space-x-3 overflow-x-auto">
           <Filter className={`${subTextThemeColors[theme]} mr-1`} size={18} />
           {categories.map((c) => (
             <span
@@ -184,7 +170,7 @@ const StoriesPage: React.FC = () => {
 
       {/* Stories Grid */}
       <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {stories.map((story) => (
             <article
               key={story.id}

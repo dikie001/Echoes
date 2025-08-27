@@ -8,6 +8,7 @@ import TriviaPage from "./pages/Trivia";
 import { useEffect } from "react";
 import { useThemeStore } from "./store/ThemeStore";
 import StoriesPage from "./pages/Stories";
+import AddQuotePage from "./pages/CreateQuote";
 
 type Theme =
   | "light"
@@ -37,7 +38,7 @@ const App = () => {
           <Route path="/trivia" element={<TriviaPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/stories" element={<StoriesPage />} />
-
+          <Route path="/create-quote" element={<AddQuotePage />} />
           <Route path="/create-story" element={<CreateStoryForm />} />
         </Routes>
       </Router>

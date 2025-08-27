@@ -1,0 +1,96 @@
+/* Base */
+.scrollbar {
+    padding-bottom: 14px;
+  overflow-y: auto;
+}
+.scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.scrollbar::-webkit-scrollbar-track {
+  border-radius: 9999px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+}
+
+/* THEMES */
+.scrollbar-light::-webkit-scrollbar-track {
+  background: #e5e7eb; /* gray-200 */
+}
+.scrollbar-light::-webkit-scrollbar-thumb {
+  background: #6b7280; /* gray-500 */
+}
+.scrollbar-light::-webkit-scrollbar-thumb:hover {
+  background: #4b5563; /* gray-600 */
+}
+
+.scrollbar-dark::-webkit-scrollbar-track {
+  background: #1f2937; /* gray-800 */
+}
+.scrollbar-dark::-webkit-scrollbar-thumb {
+  background: #4b5563; /* gray-600 */
+}
+.scrollbar-dark::-webkit-scrollbar-thumb:hover {
+  background: #6b7280; /* gray-500 */
+}
+
+.scrollbar-fancy::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, #0e7490, #581c87); /* cyan-700 → purple-900 */
+}
+.scrollbar-fancy::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+}
+.scrollbar-fancy::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.scrollbar-solarized::-webkit-scrollbar-track {
+  background: #134e4a; /* teal-900 */
+}
+.scrollbar-solarized::-webkit-scrollbar-thumb {
+  background: #475569; /* slate-600 */
+}
+.scrollbar-solarized::-webkit-scrollbar-thumb:hover {
+  background: #64748b; /* slate-500 */
+}
+
+.scrollbar-cyberpunk::-webkit-scrollbar-track {
+  background: #000;
+}
+.scrollbar-cyberpunk::-webkit-scrollbar-thumb {
+  background: #d946ef; /* fuchsia-500 */
+}
+.scrollbar-cyberpunk::-webkit-scrollbar-thumb:hover {
+  background: #e879f9; /* fuchsia-400 */
+}
+
+.scrollbar-forest::-webkit-scrollbar-track {
+  background: #052e16; /* green-950 */
+}
+.scrollbar-forest::-webkit-scrollbar-thumb {
+  background: #bef264; /* lime-400 */
+}
+.scrollbar-forest::-webkit-scrollbar-thumb:hover {
+  background: #d9f99d; /* lime-300 */
+}
+
+.scrollbar-ocean::-webkit-scrollbar-track {
+  background: #172554; /* blue-950 */
+}
+.scrollbar-ocean::-webkit-scrollbar-thumb {
+  background: #67e8f9; /* cyan-300 */
+}
+.scrollbar-ocean::-webkit-scrollbar-thumb:hover {
+  background: #a5f3fc; /* cyan-200 */
+}
+
+.scrollbar-dracula::-webkit-scrollbar-track {
+  background: #18181b; /* zinc-900 */
+}
+.scrollbar-dracula::-webkit-scrollbar-thumb {
+  background: #d8b4fe; /* purple-300 */
+}
+.scrollbar-dracula::-webkit-scrollbar-thumb:hover {
+  background: #e9d5ff; /* purple-200 */
+}
