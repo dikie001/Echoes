@@ -1,17 +1,16 @@
-import React from "react";
 import {
-  Filter,
+  Bookmark,
   BookOpen,
   Clock,
-  User,
-  Heart,
-  Bookmark,
-  ArrowLeft,
   Eye,
+  Filter,
+  Heart,
+  User
 } from "lucide-react";
-import { useThemeStore } from "../store/ThemeStore";
+import React from "react";
 import Navbar from "../components/Navbar";
 import "../global.css";
+import { useThemeStore } from "../store/ThemeStore";
 
 const StoriesPage: React.FC = () => {
   const {
@@ -68,74 +67,7 @@ const StoriesPage: React.FC = () => {
       isBookmarked: true,
       isLiked: false,
     },
-    {
-      id: 3,
-      title: "The Art of Letting Go",
-      author: "Amelia Foster",
-      excerpt:
-        "Coffee shops have a way of holding onto memories. Emma sat in the same corner booth where she'd spent countless hours with David, watching steam rise from her cup like the ghosts of conversations past...",
-      category: "romance",
-      readTime: "12 min",
-      words: 2400,
-      views: 3421,
-      likes: 567,
-      bookmarks: 203,
-      publishedDate: "2024-03-10",
-      tags: ["love", "heartbreak", "healing"],
-      isBookmarked: false,
-      isLiked: true,
-    },
-    {
-      id: 4,
-      title: "Project Mindbridge",
-      author: "Dr. Alex Kim",
-      excerpt:
-        "The neural interface was supposed to revolutionize human communication. Instead, it opened a door to something that had been waiting in the spaces between thoughts, something that understood the human mind better than humans themselves...",
-      category: "sci-fi",
-      readTime: "35 min",
-      words: 6800,
-      views: 1234,
-      likes: 445,
-      bookmarks: 267,
-      publishedDate: "2024-03-08",
-      tags: ["AI", "consciousness", "future"],
-      isBookmarked: true,
-      isLiked: true,
-    },
-    {
-      id: 5,
-      title: "The Night Shift",
-      author: "Jamie Torres",
-      excerpt:
-        "Security guard wasn't supposed to be a dangerous job. But when the cameras started showing things that weren't there during the day, and the elevator began stopping at floors that didn't exist, Thomas realized his building harbored secrets worth killing for...",
-      category: "thriller",
-      readTime: "28 min",
-      words: 4900,
-      views: 1987,
-      likes: 387,
-      bookmarks: 145,
-      publishedDate: "2024-03-05",
-      tags: ["suspense", "corporate", "paranormal"],
-      isBookmarked: false,
-      isLiked: false,
-    },
-    {
-      id: 6,
-      title: "Letters to Tomorrow",
-      author: "Isabella Santos",
-      excerpt:
-        "Every year on her birthday, Grandma Rose had written a letter to her future self. Now, at ninety-three, she was finally ready to read them all. Each envelope held a different woman's dreams, fears, and hopes across decades of living...",
-      category: "drama",
-      readTime: "22 min",
-      words: 3800,
-      views: 2876,
-      likes: 723,
-      bookmarks: 412,
-      publishedDate: "2024-03-02",
-      tags: ["family", "aging", "wisdom"],
-      isBookmarked: true,
-      isLiked: true,
-    },
+
   ];
 
   const borderColor = theme === "light" ? "border-gray-200" : "border-white/10";

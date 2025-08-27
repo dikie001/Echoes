@@ -1,17 +1,15 @@
-import React from "react";
 import {
-  Search,
+  Bookmark,
+  Copy,
   Filter,
   Heart,
-  Bookmark,
-  Share,
-  Copy,
-  ArrowLeft,
   Quote,
+  Share
 } from "lucide-react";
+import React from "react";
 import Navbar from "../components/Navbar";
+import "../global.css";
 import { useThemeStore } from "../store/ThemeStore";
-import "../global.css"
 
 const QuotesPage: React.FC = () => {
   const {

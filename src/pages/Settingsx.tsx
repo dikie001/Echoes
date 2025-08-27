@@ -1,11 +1,10 @@
 import {
-  ArrowLeft,
   Bell,
   Download,
   LogOut,
   Moon,
   Trash2,
-  User,
+  User
 } from "lucide-react";
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
