@@ -42,7 +42,7 @@ const ChoiceModal: React.FC<ModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Enhanced Backdrop */}
       <div
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={() => setShowChoiceModal(false)}
       />
 
@@ -88,7 +88,7 @@ const ChoiceModal: React.FC<ModalProps> = ({
                   >
                     Add a Novel
                   </h3>
-                  <p className={`text-sm ${subTextThemeColors[theme]}`}>
+                  <p className={`text-sm font-medium ${subTextThemeColors[theme]}`}>
                     Share your favorite book with the community
                   </p>
                 </div>

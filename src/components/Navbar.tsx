@@ -108,7 +108,7 @@ const Navbar = () => {
           <div className="md:hidden ">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-300 hover:text-blue-300 p-2 cursor-pointer"
+              className={` p-2 cursor-pointer`}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

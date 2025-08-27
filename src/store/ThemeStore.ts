@@ -100,7 +100,7 @@ export const useThemeStore = create<ThemeState>((set) => ({
     solarized:
       "bg-teal-950 text-slate-200 border border-slate-600 hover:bg-teal-900 active:scale-95",
     cyberpunk:
-      "bg-fuchsia-600 text-black border border-fuchsia-400 hover:bg-fuchsia-500 active:scale-95 active:shadow-[0_0_10px_#f0f] transition",
+      "bg-fuchsia-700 text-black border border-fuchsia-400 hover:bg-fuchsia-600 active:scale-95 active:shadow-[0_0_10px_#f0f] transition",
     forest:
       "bg-green-950 text-lime-300 border border-lime-600 hover:bg-green-900 active:scale-95",
     ocean:

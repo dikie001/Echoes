@@ -2,6 +2,7 @@ import { BookOpen, Heart, Quote } from "lucide-react";
 import React from "react";
 import Navbar from "../components/Navbar";
 import { useThemeStore } from "../store/ThemeStore";
+import { useNavigate } from "react-router-dom";
 
 const HomePage: React.FC = () => {
   const {
@@ -10,8 +11,9 @@ const HomePage: React.FC = () => {
     cardThemeColors,
     textThemeColors,
     subTextThemeColors,
-    buttonThemeColors
+    buttonThemeColors,
   } = useThemeStore();
+  const navigate = useNavigate();
 
   const featuredQuotes = [
     {
@@ -68,11 +70,15 @@ const HomePage: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
+              onClick={() => navigate("/stories")}
               className={`${buttonThemeColors[theme]} px-8 cursor-pointer py-4 rounded-2xl text-lg font-semibold shadow-lg transition-all`}
             >
               Explore Stories
             </button>
-            <button className="bg-gray-600 hover:bg-gray-500 cursor-pointer text-white px-8 py-4 rounded-2xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+            <button
+              onClick={() => navigate("/trivia")}
+              className="bg-gray-600 hover:bg-gray-500 cursor-pointer text-white px-8 py-4 rounded-2xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+            >
               Try Trivia
             </button>
           </div>
