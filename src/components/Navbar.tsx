@@ -134,6 +134,8 @@ const Navbar = () => {
             className="flex h-full flex-col p-4"
             aria-label="Mobile navigation"
           >
+            <h1 className="mt-4 mb-1 text-3xl text-center font-semibold">Elevate</h1>
+            <img src="/images/bot1.png" alt="bot logo" height={150} width={150} className="mx-auto  mb-4" />
             <div className="space-y-1">
               {links.map((link) => {
                 const Icon = link.icon;

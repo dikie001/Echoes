@@ -49,11 +49,11 @@ const AuthPage: React.FC = () => {
       {/* Left Side - Branding */}
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-900 via-gray-800 to-gray-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20" />
-        <div className="relative z-10 flex flex-col justify-center items-center p-12 text-center">
-          <div className="mb-8">
-            <BookOpen className="text-blue-400 mb-6" size={80} />
+        <div className="relative z-10 flex flex-col justify-center items-center p-8 text-center">
+          <div className="mb-4">
+            <img src="/images/bot2.png" alt="bot logo" height={180} width={180} className="mx-auto "/>
             <h1 className="text-5xl font-bold text-white mb-4">Echoes</h1>
-            <p className="text-xl text-gray-300 mb-8 max-w-md">
+            <p className="text-xl text-gray-300 mb-6 max-w-md">
               Where stories live forever and wisdom finds its voice
             </p>
           </div>
@@ -101,16 +101,16 @@ const AuthPage: React.FC = () => {
       </div>
 
       {/* Right Side - Auth Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-8 py-4">
         <div className="w-full max-w-md">
           {/* Mobile Header */}
-          <div className="text-center mb-8 lg:hidden">
-            <BookOpen className="text-blue-400 mx-auto mb-4" size={48} />
+          <div className="text-center mb-6 lg:hidden">
+            <img src="/images/bot1.png" width={120} className="mx-auto" />
             <h1 className="text-3xl font-bold text-white">Echoes</h1>
           </div>
 
           {/* Auth Toggle */}
-          <div className="bg-gray-800 rounded-2xl p-1 mb-8">
+          <div className="bg-gray-800 rounded-2xl p-1 mb-6">
             <div className="grid grid-cols-2 gap-1">
               <button
                 onClick={() => setIsLogin(true)}
@@ -136,7 +136,7 @@ const AuthPage: React.FC = () => {
           </div>
 
           {/* Form Header */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-6">
             <h2 className="text-2xl font-bold text-white mb-2">
               {isLogin ? "Welcome back!" : "Create your account"}
             </h2>
