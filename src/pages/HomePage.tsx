@@ -11,6 +11,7 @@ const HomePage: React.FC = () => {
     cardThemeColors,
     textThemeColors,
     subTextThemeColors,
+    secondaryButtonThemeColors,
     buttonThemeColors,
   } = useThemeStore();
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ const HomePage: React.FC = () => {
             </button>
             <button
               onClick={() => navigate("/trivia")}
-              className="bg-gray-600 hover:bg-gray-500 cursor-pointer text-white px-8 py-4 rounded-2xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+              className={`bg-gray-800 hover:bg-gray-500 cursor-pointer text-white px-8 py-4 rounded-2xl shadow-lg  text-lg font-semibold s transition-all`}
             >
               Try Trivia
             </button>

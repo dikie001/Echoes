@@ -21,6 +21,7 @@ interface ThemeState {
   cardThemeColors: Record<Theme, string>;
   buttonThemeColors: Record<Theme, string>;
   subTextThemeColors: Record<Theme, string>;
+  secondaryButtonThemeColors: Record<Theme, string>;
 
   // STATE
   choice: string;
@@ -36,7 +37,7 @@ export const useThemeStore = create<ThemeState>((set) => ({
   navbarText: "Echoes",
   setNavbarText: (navbarText) => set({ navbarText }),
 
-  // STATE 
+  // STATE
   choice: "",
   setChoice: (choice) => set({ choice }),
 
@@ -51,6 +52,7 @@ export const useThemeStore = create<ThemeState>((set) => ({
     forest: "bg-green-950 text-lime-400", // deep green + lime text
     ocean: "bg-blue-950 text-cyan-300", // navy + cyan text
     dracula: "bg-zinc-900 text-purple-300", // dark gray + soft purple
+
   },
   //TEXT THEME COLORS
   textThemeColors: {
@@ -107,5 +109,24 @@ export const useThemeStore = create<ThemeState>((set) => ({
       "bg-blue-950 text-cyan-200 border border-cyan-500 hover:bg-blue-900 active:scale-95",
     dracula:
       "bg-zinc-900 text-purple-300 border border-purple-500 hover:bg-zinc-800 active:scale-95",
+  },
+
+  // SECONDARY BUTTON
+  secondaryButtonThemeColors: {
+    light:
+      "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 active:scale-95",
+    dark: "bg-zinc-900 text-gray-300 border border-gray-700 hover:bg-zinc-800 active:scale-95",
+    fancy:
+      "bg-purple-100 text-purple-700 border border-purple-300 hover:bg-purple-200 active:scale-95",
+    solarized:
+      "bg-teal-900 text-slate-300 border border-slate-600 hover:bg-teal-800 active:scale-95",
+    cyberpunk:
+      "bg-fuchsia-600 text-fuchsia-700 border border-fuchsia-400 hover:bg-fuchsia-300 active:scale-95",
+    forest:
+      "bg-green-900 text-lime-300 border border-lime-600 hover:bg-green-800 active:scale-95",
+    ocean:
+      "bg-blue-900 text-cyan-200 border border-cyan-500 hover:bg-blue-800 active:scale-95",
+    dracula:
+      "bg-zinc-800 text-purple-300 border border-purple-500 hover:bg-zinc-700 active:scale-95",
   },
 }));
